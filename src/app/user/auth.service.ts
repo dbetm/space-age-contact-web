@@ -46,4 +46,29 @@ export class AuthService {
     );
   }
 
+  getAccessToken() {
+    return localStorage.getItem('user_session_token');
+  }
+
+  signin(email: string, password: string) {
+    return this.http.post(
+      this.BASE_API + '/sign-in',
+      // body args
+      {
+        'email': email,
+        'password': password
+      },
+      this.headers
+    ).subscribe(
+      (result:any) => {
+        // save the token in local storage
+        localStorage.setItem('user_session_token', result['user_token']);
+        // save the user id in local storage
+        localStorage.setItem('user_id', result['id']);
+        // change route to the profile component
+        // this.router.navigate(['profile']);
+      }
+    )
+  }
+
 }
