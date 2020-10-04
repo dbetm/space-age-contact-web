@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Sign Up</h1>
+    </div>
+    <div class="col-12">
+      <form [formGroup]="form" (ngSubmit)="signUpUser()">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Enter your fullname" required>
+        </div>
+        <div class="form-group">
+          <label>Birthdate</label>
+          <input type="date" class="form-control" formControlName="birthdate" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Example: hey@femail.com" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="password" placeholder="Enter a password" required>
+        </div>
+        <div class="form-group">
+            <label>Country</label>
+            <select class="form-control" formControlName="country" name="selectedCountry" required>
+              <option [ngValue]="null" disabled>Choose your country</option>
+              <option *ngFor="let c of countries" [ngValue]="c">
+             {{ c.cName }}
+            </option>
+            </select>
+        </div>
+        <div class="text-center center">
+            <button type="submit" class="btn btn-success btn-lg">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
